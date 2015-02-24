@@ -4,22 +4,27 @@ ifeq ($(DEBUG), 1)
 else
 	CFLAGS = -lconfig++ -std=c++0x
 endif
+BINDIR := bin
 
 all: time color config
 
-time:
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
+
+time: | $(BINDIR)
 	g++ -o bin/clock-time clock-time.cpp -lwiringPi $(CFLAGS)
 
-color:
+color: | $(BINDIR)
 	g++ -o bin/clock-color clock-color.cpp $(CFLAGS)
 
-config:
+config: | $(BINDIR)
 	g++ -o bin/clock-config clock-config.cpp $(CFLAGS)
 
 .PHONY: time color clean config
 
 clean:
-	rm clock-time clock-color clock-config
+	rm bin/*
 
 install:
 	chown root. bin/clock-time
