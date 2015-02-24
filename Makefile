@@ -27,11 +27,11 @@ clean:
 	rm bin/*
 
 install:
-	chown root. bin/clock-time
-	chown root. bin/clock-color
-	chmod u+s bin/clock-time
-	chmod u+s bin/clock-color
 	cp bin/* /usr/local/bin/
+	chown root. /usr/local/bin/clock-time
+	chown root. /usr/local/bin/clock-color
+	chmod u+s /usr/local/bin/clock-time
+	chmod u+s /usr/local/bin/clock-color
 
 uninstall:
 	rm /usr/local/bin/clock-time
