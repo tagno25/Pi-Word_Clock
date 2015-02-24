@@ -8,13 +8,13 @@ endif
 all: time color config
 
 time:
-	g++ -o clock-time clock-time.cpp -lwiringPi $(CFLAGS)
+	g++ -o bin/clock-time clock-time.cpp -lwiringPi $(CFLAGS)
 
 color:
-	g++ -o clock-color clock-color.cpp $(CFLAGS)
+	g++ -o bin/clock-color clock-color.cpp $(CFLAGS)
 
 config:
-	g++ -o clock-config clock-config.cpp $(CFLAGS)
+	g++ -o bin/clock-config clock-config.cpp $(CFLAGS)
 
 .PHONY: time color clean config
 
@@ -22,13 +22,11 @@ clean:
 	rm clock-time clock-color clock-config
 
 install:
-	cp clock-time /usr/local/bin/
-	chown root. /usr/local/bin/clock-time
-	chmod u+s /usr/local/bin/clock-time
-	cp clock-color /usr/local/bin/
-	chown root. /usr/local/bin/clock-color
-	chmod u+s /usr/local/bin/clock-color
-	cp clock-config /usr/local/bin/
+	chown root. bin/clock-time
+	chown root. bin/clock-color
+	chmod u+s bin/clock-time
+	chmod u+s bin/clock-color
+	cp bin/* /usr/local/bin/
 
 uninstall:
 	rm /usr/local/bin/clock-time
